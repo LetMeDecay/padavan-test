@@ -11,8 +11,15 @@ jobs:
     #if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Check Golang version
+    #- name: Checkout
+    #  uses: actions/checkout@master
+    - id: vars
       run: |
-        ls /opt/hostedtoolcache/go
+        echo ::set-output name=go_version::$(curl -s https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json | grep -oE '"version": "[0-9]{1}.[0-9]{1,}(.[0-9]{1,})?"' | head -1 | cut -d':' -f2 | sed 's/ //g; s/"//g')
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ steps.vars.outputs.go_version }}
+    - name: Check Go
+      run: |
+        go version
