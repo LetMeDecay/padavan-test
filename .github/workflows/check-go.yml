@@ -22,4 +22,4 @@ jobs:
         go-version: ${{ steps.vars.outputs.go_version }}
     - name: Check Go
       run: |
-        go version
+        GOOS=linux GOARCH=mipsle go version
