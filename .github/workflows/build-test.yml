@@ -56,10 +56,10 @@ jobs:
         # 更新curl版本
         rm -rf /opt/rt-n56u/trunk/libs/libcurl/curl-7.72.0.tar.xz
         curl_url=`curl --silent https://api.github.com/repos/curl/curl/releases/latest | jq -r '.assets[] | select(.browser_download_url|test("tar.xz$")) | .browser_download_url'`
-        #curl_version=`basename $curl_url .tar.xz`
-        #sed -i "s|SRC_NAME.*|SRC_NAME=$curl_version|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
-        #sed -i "s|SRC_URL.*|SRC_URL=$curl_url|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
-        curl $curl_url -o /opt/rt-n56u/trunk/libs/libcurl/curl-7.72.0.tar.xz -s
+        curl_version=`basename $curl_url .tar.xz`
+        sed -i "s|SRC_NAME.*|SRC_NAME=$curl_version|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
+        sed -i "s|SRC_URL.*|SRC_URL=$curl_url|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
+        #curl $curl_url -o /opt/rt-n56u/trunk/libs/libcurl/curl-7.72.0.tar.xz -s
         
         # 更新busybox版本
         rm -rf /opt/rt-n56u/trunk/user/busybox/busybox-1.24.x
