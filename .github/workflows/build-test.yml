@@ -58,6 +58,7 @@ jobs:
         curl_version=`basename $curl_url .tar.xz`
         sed -i "s|SRC_NAME.*|SRC_NAME=$curl_version|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
         sed -i "s|SRC_URL.*|SRC_URL=$curl_url|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
+        curl $curl_url -o /opt/rt-n56u/trunk/libs/libcurl/$curl_version.tar.xz -s
         # 更新busybox版本
         git clone https://github.com/mirror/busybox /opt/rt-n56u/trunk/user/busybox/busybox-latest
         cd /opt/rt-n56u/trunk/user/busybox/busybox-latest
