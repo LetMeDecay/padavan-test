@@ -54,11 +54,11 @@ jobs:
         sed -i "554,555s:0xff:0x7ff:g" /opt/rt-n56u/trunk/linux-3.4.x/arch/mips/rt2880/init.c
         sed -i "554,556s:0xc2:0x$clock:g" /opt/rt-n56u/trunk/linux-3.4.x/arch/mips/rt2880/init.c
         # 更新curl版本
-        curl_url=`curl --silent https://api.github.com/repos/curl/curl/releases/latest | jq -r '.assets[] | select(.browser_download_url|test("tar.xz$")) | .browser_download_url'`
-        curl_version=`basename $curl_url .tar.xz`
-        sed -i "s|SRC_NAME.*|SRC_NAME=$curl_version|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
-        sed -i "s|SRC_URL.*|SRC_URL=$curl_url|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
-        curl $curl_url -o /opt/rt-n56u/trunk/libs/libcurl/$curl_version.tar.xz -s
+        #curl_url=`curl --silent https://api.github.com/repos/curl/curl/releases/latest | jq -r '.assets[] | select(.browser_download_url|test("tar.xz$")) | .browser_download_url'`
+        #curl_version=`basename $curl_url .tar.xz`
+        #sed -i "s|SRC_NAME.*|SRC_NAME=$curl_version|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
+        #sed -i "s|SRC_URL.*|SRC_URL=$curl_url|g" /opt/rt-n56u/trunk/libs/libcurl/Makefile
+        #curl $curl_url -o /opt/rt-n56u/trunk/libs/libcurl/$curl_version.tar.xz -s
         # 更新busybox版本
         git clone https://github.com/mirror/busybox /opt/rt-n56u/trunk/user/busybox/busybox-latest
         cd /opt/rt-n56u/trunk/user/busybox/busybox-latest
